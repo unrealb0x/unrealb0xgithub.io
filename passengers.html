@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passengers - Unrealbox</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+</head>
+<body>
+    <div class="container2">
+        <div class="header">
+            <p>This is a low-cost web. Probably slow as f_ck. 💙</p>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html">UNREALBOX</a></li>
+                    <li><a href="passengers.html" class="active">Passengers</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="#">CTRL+ALT+SUPR</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <section class="hero">
+            <div class="hero-title">
+                <h1>Welcome Passengers</h1>
+				<p>Welcome to the Passengers zone! Here, you will find exclusive content, updates, and more. Stay tuned for exciting updates and new projects.</p>
+            </div>
+        </section>
+ 
+
+        <script src="script.js"></script>
+        <script>
+            function toggleMenu() {
+                const menu = document.querySelector('.menu');
+                menu.classList.toggle('active');
+            }
+        </script>
+
+        <footer>
+            <div class="footer2">
+                <a href="#" target="_blank" class="social-icon"><img src="images/hint-icon.png" alt="Hint"></a>
+                <a href="https://x.com/@unrealb0x" target="_blank" class="social-icon"><img src="images/twitter-icon.png" alt="Twitter"></a>
+                <a href="https://instagram.com/@unrealb0x" target="_blank" class="social-icon"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                <a href="https://tiktok.com/@unrealb0x" target="_blank" class="social-icon"><img src="images/tiktok-icon.png" alt="TikTok"></a>
+                <a href="https://dns.xyz/unrealb0x" target="_blank" class="social-icon"><img src="images/dns-icon.png" alt="DNS"></a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
