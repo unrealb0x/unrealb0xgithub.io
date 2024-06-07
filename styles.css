@@ -3,174 +3,99 @@ body {
     font-family: Questrial, sans-serif;
     background-color: #000;
     color: #fff;
-	scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 .container {
     position: relative;
-    background: url('images/background.jpg') no-repeat center center fixed; 
+    background: url('images/background.jpg') no-repeat center center fixed;
     background-size: cover;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
+.container2 {
+    position: relative;
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
 .header {
-    background: black;
+    background-color: rgba(0, 0, 0, 0.75);
     color: white;
     padding: 10px;
     text-align: left;
-    position: relative;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    min-height: 15h;
+	z-index: 1000;
 }
 
 .header p {
-    margin: 50;
+    margin: 5;
+    font-size: 14px;
+}
+
+@media (max-width: 900px) {
+    .header p {
+        font-size: 12px;
+    }
 }
 
 nav {
     position: absolute;
-    top: 10px;
+    top: 20px; /* ajustar par amover el menu mas abajo*/
     right: 10px;
 }
 
 .menu {
-    list-style: none;
-    margin: 20;
-    padding: 20;
-    display: flex;
-    gap: 40px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 .menu li {
-    display: inline;
+    margin: 0 10px;
+    position: relative;
 }
 
 .menu a {
-    color: white;
     text-decoration: none;
-    font-weight: bold;
-}
-
-.hero {
-    position: relative; /* Necesario para la posicion relativa del título */
-    display: flex;
-    align-items: flex-end; /* Alinear elementos hijos al final (parte inferior) */
-    justify-content: flex-start; /* Alinear elementos hijos al inicio (parte izquierda) */
-    height: 70vh;
-    text-align: left;
-    padding: 50px; /* Agrega espacio alrededor del contenido */
-}
-
-.hero-title h1 {
-    font-size: 56px;
-    margin: 0;
-    line-height: 1.2;
-    position: absolute; /* Posiciona absolutamente dentro de la sección hero */
-    bottom: 100px; /* Ajustar la distancia desde el fondo */
-    left: 20px; /* Ajustar la distancia desde la izquierda */
-}
-
-.btn {
-    width: max-content;
-    border: none;
-    display: flex;
-    gap: 20px;
-    font-size: 1.2em;
-    font-weight: 600;
-    color: #fff;
-    padding-block: 6px;
-    background: none;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: .2s ease-in-out;
-	position: absolute; /* Posiciona absolutamente dentro de la sección hero */
-    bottom: 80px; /* Ajustar la distancia desde el fondo */
-    left: 20px; /* Ajustar la distancia desde la izquierda */
-}
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    padding: 50px;
-}
-
-.gallery-item img {
-    width: 100%;
-    border-radius: 5px;
-}
-
-.gallery-item video {
-    width: 100%;
-    border-radius: 5px;
-}
-
-.about {
-    display: flex;
-    padding: 30px;
-    background-color: #111;
-}
-
-.about-title {
-    flex: 1; /* Para que el título ocupe el espacio restante */
-}
-
-.about-description {
-    flex: 1; /* Para que la descripción ocupe el espacio restante */
-}
-
-@media (max-width: 900px) {
-    .about {
-        flex-direction: column; /* Cambiar la dirección a columna en dispositivos móviles */
-        padding: 20px;
-    }
-
-    .about-title,
-    .about-description {
-        text-align: center; /* Centrar el texto en dispositivos móviles */
-    }
-}
-
-footer {
-    display: flex;
-    justify-content: center;
+    color: white; /* Texto blanco */
     padding: 10px;
-    background-color: #111;
+    display: block;
 }
 
-footer ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+.menu a::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: blue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
 }
 
-footer ul li {
-    margin: 0 10px;
+.menu a:hover::before,
+.menu a.active::before {
+    transform: scaleX(1);
 }
 
-footer ul li a {
-    color: #fff;
-    text-decoration: none;
+.menu a.active {
+    color: blue;
 }
 
-.footer {
-    background: rgba(0, 0, 0, 0.7);
-    text-align: center;
-    padding: 10px 0;
-}
-
-.social-icon {
-    margin: 0 10px;
-}
-
-.social-icon img {
-    width: 30px;
-    height: 30px;
-}
-
-/* Menu celular */
+/* Estilos para el menú de toggle en pantallas pequeñas */
 .menu-toggle {
     display: none;
     background: none;
@@ -186,6 +111,10 @@ footer ul li a {
 @media (max-width: 900px) {
     .menu-toggle {
         display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
     }
 
     .menu {
@@ -202,5 +131,156 @@ footer ul li a {
 
     .menu.active {
         display: flex;
+        top: 1%; /* Movemos el menú hacia arriba para alinearlo con la parte superior */
+        position: absolute;
+        width: 100vw;
+        justify-content: center; /* Alinea los elementos horizontalmente */
+        align-items: center;
     }
+}
+
+@media (min-width: 901px) {
+    .menu {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .menu li {
+        margin: 0 20px; /* Espacio entre elementos del menú */
+    }
+}
+
+.hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    height: 70vh;
+    text-align: left;
+    padding: 50px;
+}
+
+.hero-title h1 {
+    font-size: 56px;
+    margin: 0;
+    line-height: 1.2;
+    position: absolute;
+    bottom: 100px;
+    left: 20px;
+}
+
+.btn {
+    width: max-content;
+    border: none;
+    display: flex;
+    gap: 20px;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #fff;
+    padding-block: 6px;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: .2s ease-in-out;
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 50px;
+}
+
+.gallery-item img, .gallery-item video {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.about {
+    display: flex;
+    padding: 30px;
+    background-color: #111;
+}
+
+.about-title, .about-description {
+    flex: 1;
+}
+
+.about-title {
+	margin-left: 150px;
+	font-size: 2em;
+}
+.about-description {
+	margin-right: 150px;
+	max-width: 600px;
+	font-size: 14px;
+}
+
+.passengers-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.passengers-button:hover {
+    background-color: blue;
+}
+
+@media (max-width: 900px) {
+    .about {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .about-title {
+        /* Ajusta el título h2 al centro */
+        text-align: left;
+		margin-left: 20px;
+		font-size: 1.6em;
+    }
+
+    .about-description {
+        /* Alinea el párrafo de descripción a la izquierda */
+        text-align: left;
+		margin-right: 20px;
+		margin-left: 20px;
+    }
+}
+
+/* Pie de pagina */
+.footer2 {
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed; /* Agrega esta línea */
+    bottom: 0; /* Para que el footer se quede fijo en la parte inferior */
+}
+
+.footer {
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.social-icon {
+    margin: 0 10px;
+}
+
+.social-icon img {
+    width: 30px;
+    height: 30px;
 }
