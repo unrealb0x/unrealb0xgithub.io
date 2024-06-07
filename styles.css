@@ -1,0 +1,206 @@
+body {
+    margin: 0;
+    font-family: Questrial, sans-serif;
+    background-color: #000;
+    color: #fff;
+	scroll-behavior: smooth;
+}
+
+.container {
+    position: relative;
+    background: url('images/background.jpg') no-repeat center center fixed; 
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background: black;
+    color: white;
+    padding: 10px;
+    text-align: left;
+    position: relative;
+}
+
+.header p {
+    margin: 50;
+}
+
+nav {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.menu {
+    list-style: none;
+    margin: 20;
+    padding: 20;
+    display: flex;
+    gap: 40px;
+}
+
+.menu li {
+    display: inline;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    position: relative; /* Necesario para la posicion relativa del título */
+    display: flex;
+    align-items: flex-end; /* Alinear elementos hijos al final (parte inferior) */
+    justify-content: flex-start; /* Alinear elementos hijos al inicio (parte izquierda) */
+    height: 70vh;
+    text-align: left;
+    padding: 50px; /* Agrega espacio alrededor del contenido */
+}
+
+.hero-title h1 {
+    font-size: 56px;
+    margin: 0;
+    line-height: 1.2;
+    position: absolute; /* Posiciona absolutamente dentro de la sección hero */
+    bottom: 100px; /* Ajustar la distancia desde el fondo */
+    left: 20px; /* Ajustar la distancia desde la izquierda */
+}
+
+.btn {
+    width: max-content;
+    border: none;
+    display: flex;
+    gap: 20px;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #fff;
+    padding-block: 6px;
+    background: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: .2s ease-in-out;
+	position: absolute; /* Posiciona absolutamente dentro de la sección hero */
+    bottom: 80px; /* Ajustar la distancia desde el fondo */
+    left: 20px; /* Ajustar la distancia desde la izquierda */
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 50px;
+}
+
+.gallery-item img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.gallery-item video {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.about {
+    display: flex;
+    padding: 30px;
+    background-color: #111;
+}
+
+.about-title {
+    flex: 1; /* Para que el título ocupe el espacio restante */
+}
+
+.about-description {
+    flex: 1; /* Para que la descripción ocupe el espacio restante */
+}
+
+@media (max-width: 900px) {
+    .about {
+        flex-direction: column; /* Cambiar la dirección a columna en dispositivos móviles */
+        padding: 20px;
+    }
+
+    .about-title,
+    .about-description {
+        text-align: center; /* Centrar el texto en dispositivos móviles */
+    }
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: #111;
+}
+
+footer ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+footer ul li {
+    margin: 0 10px;
+}
+
+footer ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer {
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 10px 0;
+}
+
+.social-icon {
+    margin: 0 10px;
+}
+
+.social-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+/* Menu celular */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .menu {
+        display: none;
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        background: black;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+}

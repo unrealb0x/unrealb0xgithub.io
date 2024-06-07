@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unrealbox</title>
+    <link rel="stylesheet" href="styles.css">
+	<link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <p>This is a low-cost web. Probably slow as f_ck. 💙</p>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <nav>
+                <ul class="menu">
+                    <li><a href="#">UNREALBOX</a></li>
+                    <li><a href="#">Passengers</a></li>
+                    <li><a href="#about"">About</a></li>
+                    <li><a href="#">CTRL+ALT+SUPR</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    <section class="hero">
+	<div class="hero-title">
+        <h1>Outside The Box<br>Inside Your Screen</h1>
+		</div>
+        <a href="#gallery" class="btn">
+		<span>Passengers Zone</span></a>
+    </section>
+
+    <section id="gallery" class="gallery">
+
+        <div class="gallery-item"><img src="images/duck.gif" alt="Richard"></div>
+        <div class="gallery-item"><img src="images/laptop.gif" alt="Dreamhub"></div>
+        <div class="gallery-item"><img src="images/duck.gif" alt="Abstract Art 4"></div>
+        <div class="gallery-item"><img src="images/laptop.gif" alt="Abstract Art 5"></div>
+        <div class="gallery-item"><img src="images/dream-hacking.gif" alt="Abstract Art 6"></div>
+		<div class="gallery-item"><img src="images/duck.gif" alt="Abstract Art 4"></div>
+        <div class="gallery-item"><img src="images/laptop.gif" alt="Abstract Art 5"></div>
+        <div class="gallery-item"><img src="images/dream-hacking.gif" alt="Abstract Art 6"></div>
+    </section>
+	
+
+
+    <section id="about" class="about">
+        <div class="about-title">
+            <h2>About me<br>& the project</h2>
+        </div>
+        <div class="about-description">
+            <p>Hi! I'm Martin Villarreal, an artist and visual designer from Argentina. This is my personal project where I explore and share crazy, weird, and out-of-the-box ideas, concepts, and content.</p>
+            <p>I use Unrealbox as a space for play and experiment; my work draws inspiration from an eclectic mix of sources including nature, technology, architecture, and pop culture.</p>
+            <p>The evolution and growth of this project have been largely fueled by the support of the Passengers who collect my pieces. I hope that my content resonates with you and fills your bored screen with what I enjoy creating. Thank you!</p>
+            <p>Passengers zone</p>
+        </div>
+    </section>
+	
+	<script src="script.js"></script>
+	<script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+
+    <footer>
+        </div>
+		
+        <div class="footer">
+		<a href="#" target="_blank" class="social-icon"><img src="images/hint-icon.png" alt="Facebook"></a>
+            <a href="https://x.com/@unrealb0x" target="_blank" class="social-icon"><img src="images/twitter-icon.png" alt="Facebook"></a>
+            <a href="https://instagram.com/@unrealb0x" target="_blank" class="social-icon"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            <a href="https://tiktok.com/@unrealb0x" target="_blank" class="social-icon"><img src="images/tiktok-icon.png" alt="Twitter"></a>
+            <a href="https://dns.xyz/unrealb0x" target="_blank" class="social-icon"><img src="images/dns-icon.png" alt="TikTok"></a>
+        </div>
+    </div>
+    </footer>
+</body>
+</html>
