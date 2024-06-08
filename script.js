@@ -1,34 +1,3 @@
-{
-    "selected": [
-        {
-            "type": "image",
-            "src": "path/to/image1.jpg",
-            "description": "Image 1 description",
-            "link": "http://example.com"
-        },
-        {
-            "type": "video",
-            "src": "path/to/video1.mp4",
-            "thumbnail": "path/to/thumbnail1.jpg",
-            "description": "Video 1 description",
-            "link": "http://example.com"
-        }
-    ],
-    "anotherCategory": [
-        {
-            "type": "image",
-            "src": "path/to/image2.jpg",
-            "description": "Image 2 description",
-            "link": "http://example.com"
-        }
-    ]
-}
-
-A continuación, ajusta tu código JavaScript para manejar correctamente los datos y verificar que las categorías sean arrays antes de usar forEach:
-script.js
-
-javascript
-
 document.addEventListener('DOMContentLoaded', function() {
     var links = document.querySelectorAll('a[href^="#"]');
     links.forEach(function(link) {
@@ -151,3 +120,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', resizeModal);
     resizeModal();
 });
+
