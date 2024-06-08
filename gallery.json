@@ -1,0 +1,26 @@
+{
+   "selected": {
+      "type": "image",
+      "src": "images/laptop.gif",
+      "description": "Descripción de la imagen 2",
+      "link": "https://www.ejemplo.com"
+   },
+   "latest": {
+      "type": "image",
+      "src": "images/dream-hacking.gif",
+      "description": "Descripción de la imagen 3",
+      "link": "https://www.ejemplo.com"
+   },
+   "codes": {
+      "type": "video",
+      "src": "https://player.vimeo.com/video/955128487",
+      "description": "FirstDream.mp4",
+      "link": "https://www.ejemplo2.com"
+   },
+   "collabs": {
+      "type": "image",
+      "src": "images/collab1.gif",
+      "description": "Descripción de la imagen de colaboración 1",
+      "link": "https://www.ejemplo.com"
+   }
+}
