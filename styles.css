@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: Questrial, sans-serif;
+    font-family: Ubuntu;
     background-color: #000;
     color: #fff;
     scroll-behavior: smooth;
@@ -25,13 +25,12 @@ body {
 }
 
 .header {
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.85);
     color: white;
     padding: 10px;
     text-align: left;
     position: fixed;
     width: 100%;
-    box-sizing: border-box;
     display: flex;
     align-items: center;
     min-height: 15h;
@@ -39,8 +38,8 @@ body {
 }
 
 .header p {
-    margin: 5;
-    font-size: 14px;
+    margin: 0;
+    font-size: 1vw;
 }
 
 @media (max-width: 900px) {
@@ -95,6 +94,45 @@ nav {
     color: blue;
 }
 
+/* Menu social */
+.social-icons-left {
+    display: flex;
+    align-items: center; /* Alinea los íconos verticalmente al centro */
+    margin-left: 1vw; /* Utiliza vw para el margen izquierdo */
+}
+
+.social-icon-left img {
+    margin-right: 1vw; /* Utiliza vw para el margen entre los íconos */
+    width: 2vw; /* Utiliza vw para el ancho de los íconos */
+    height: 2vw; /* Utiliza vw para la altura de los íconos */
+}
+
+.social-icon-leftbox img {
+    margin-right: 1vw; /* Utiliza vw para el margen entre los íconos */
+    width: 7vw; /* Utiliza vw para el ancho de los íconos */
+    height: 2vw; /* Utiliza vw para la altura de los íconos */
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 480px) {
+    .social-icons-left {
+        margin-left: 2vw; /* Ajusta el margen izquierdo para pantallas pequeñas */
+    }
+
+    .social-icon-left img {
+        margin-right: 2vw; /* Ajusta el margen entre los íconos para pantallas pequeñas */
+        width: 7vw; /* Ajusta el ancho de los íconos para pantallas pequeñas */
+        height: 7vw; /* Ajusta la altura de los íconos para pantallas pequeñas */
+    }
+
+    .social-icon-leftbox img {
+        margin-right: 2vw; /* Ajusta el margen entre los íconos para pantallas pequeñas */
+        width: 15vw; /* Ajusta el ancho de los íconos para pantallas pequeñas */
+        height: 5vw; /* Ajusta la altura de los íconos para pantallas pequeñas */
+    }
+}
+
+
 /* Estilos para el menú de toggle en pantallas pequeñas */
 .menu-toggle {
     display: none;
@@ -104,16 +142,16 @@ nav {
     font-size: 1.5rem;
     cursor: pointer;
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15%;
+    right: 5%;
 }
 
+/* Menu hamburguesa*/
 @media (max-width: 900px) {
     .menu-toggle {
         display: block;
         color: white;
         text-align: center;
-        padding: 14px 16px;
         text-decoration: none;
     }
 
@@ -123,15 +161,16 @@ nav {
         gap: 10px;
         position: absolute;
         top: 50px;
-        right: 10px;
-        background: black;
+        right: 0px;
+        background-color: rgba(0, 0, 0, 0.85);
         padding: 10px;
         border-radius: 5px;
     }
 
+/*abierto */
     .menu.active {
         display: flex;
-        top: 1%; /* Movemos el menú hacia arriba para alinearlo con la parte superior */
+        top: 100%;
         position: absolute;
         width: 100vw;
         justify-content: center; /* Alinea los elementos horizontalmente */
@@ -154,46 +193,135 @@ nav {
 .hero {
     position: relative;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    height: 70vh;
-    text-align: left;
-    padding: 50px;
+    flex-direction: column; /* Organiza los elementos en columna */
+    align-items: center; /* Centra los elementos verticalmente */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    height: 100vh;
+    text-align: center;
+    padding: 5vw; /* Utiliza vw para el padding */
+}
+
+.hero-title {
+    white-space: nowrap; /* Evita el salto de línea */
+    overflow: hidden; /* Evita que el texto se desborde del contenedor */
+    text-overflow: ellipsis; /* Añade puntos suspensivos si el texto se desborda */
 }
 
 .hero-title h1 {
-    font-size: 56px;
+    font-size: 4vw; /* Utiliza vw para el tamaño de fuente */
     margin: 0;
     line-height: 1.2;
-    position: absolute;
-    bottom: 100px;
-    left: 20px;
+}
+
+.hero-title p {
+    max-width: 90vw; /* Utiliza vw para el ancho máximo */
+    font-size: 1vw; /* Utiliza vw para el tamaño de fuente */
+    margin: 0;
+    line-height: 1.2;
+    max-height: 50vh; /* Utiliza vh para la altura máxima */
 }
 
 .btn {
-    width: max-content;
-    border: none;
-    display: flex;
-    gap: 20px;
-    font-size: 1.2em;
+    font-size: 2vw; /* Utiliza vw para el tamaño de fuente */
     font-weight: 600;
-    color: #fff;
-    padding-block: 6px;
-    background: none;
+    color: inherit; /* Hereda el color del texto del padre */
+    text-decoration: none; /* Quita el subrayado del texto */
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: .2s ease-in-out;
-    position: absolute;
-    bottom: 80px;
-    left: 20px;
+    margin: 2vw 0; /* Espacio entre el botón y otros elementos */
+    display: flex;
+    align-items: center; /* Alinea verticalmente el texto y el icono */
+}
+
+.btn span {
+    display: flex;
+    align-items: center;
+}
+
+.btn::after {
+    content: ">"; /* Agrega el símbolo mayor que como contenido */
+    margin-left: 5px; /* Espacio entre el texto y el icono */
+}
+
+/* Estilo al pasar el mouse por encima */
+.btn:hover {
+    color: blue; /* Cambia el color del texto al azul */
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 480px) {
+    .hero-title h1 {
+        font-size: 10vw; /* Ajusta el tamaño de fuente */
+    }
+
+    .hero-title p {
+        font-size: 5vw; /* Ajusta el tamaño de fuente */
+    }
+
+    .btn {
+        font-size: 6vw; /* Ajusta el tamaño de fuente */
+    }
+}
+
+.marketplaces {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si el espacio es insuficiente */
+    padding: 10px;
+    background-color: #111;
+}
+
+.marketplaces-item {
+    flex: 0 0 33.33%; /*ancho de cada elemento para que ocupe un tercio del contenedor */
+    padding: 10px; /* espacio entre elementos */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.marketplaces-item img {
+    max-width: 50%; /*ancho máximo de las imágenes */
+    height: auto; /* Mantiene la proporción de aspecto de las imágenes */
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 480px) {
+    .marketplaces {
+        justify-content: space-around; /* Distribuye los elementos equitativamente con espacios alrededor */
+        align-items: center; /* Centra los elementos verticalmente */
+    }
+
+    .marketplaces-item {
+        flex-basis: 40%; /* Ajusta el ancho de cada elemento para que ocupe un 40% del contenedor */
+    }
+}
+
+.gallerymenu {
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.gallerymenu-item {
+    margin: 0 15px;
+    padding: 10px 0;
+    color: #000;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.gallerymenu-item:hover,
+.gallerymenu-item.active {
+    border-bottom: 2px solid #000;
 }
 
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    padding: 50px;
+    padding: 10px;
+    background-color: #111;
 }
 
 .gallery-item img, .gallery-item video {
@@ -201,9 +329,154 @@ nav {
     border-radius: 5px;
 }
 
+/* Media query para dispositivos móviles */
+@media (max-width: 480px) {
+    .gallery {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en móviles */
+        gap: 1vw; /* Ajusta el espacio entre elementos */
+        padding: 2vw; /* Ajusta el padding para móviles */
+    }
+
+    .gallery-item img, .gallery-item video {
+        width: 100%;
+        border-radius: 0; /* Sin borde redondeado para un look de cuadrícula más ajustado */
+    }
+
+    .gallerymenu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallerymenu-item {
+        margin: 5px 0;
+    }
+}
+
+/* Estilos para la ventana modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    background-color: white;
+    width: 80%;
+    max-width: 1000px;
+    height: 50%;
+	max-height: 85vh;
+    display: flex;
+    flex-direction: row;
+	top: 10%; /* Añade esta línea para bajar la ventana modal */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    color: #aaa;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo cuadrado y transparente */
+    padding: 10px; /* Espacio alrededor del texto */
+    border-radius: 3px; /* Borde redondeado */
+    transition: color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.close:hover {
+    color: blue; /* Cambia el color a azul cuando se coloca el cursor encima */
+}
+
+.close:active {
+    color: blue; /* Cambia el color a azul cuando se hace clic */
+}
+
+.modal-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-image-container {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.modal-video-container {
+    display: none;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.modal-video {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-details {
+    padding: 10vh;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.75);
+	overflow-y: auto;
+	top: 20%;
+}
+
+.modal-details .modal-description, .modal-details .modal-button {
+    margin: 10px 0;
+}
+
+
+/* Media Query for mobile devices */
+@media (max-width: 600px) {
+    .modal-content {
+        flex-direction: column;
+		width: 95%;
+		height: 95%;
+		max-height: auto;
+        top: 10%;
+    }
+
+    .modal-image-container,
+    .modal-video-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-details {
+        width: 100%;
+        padding: 5vh;
+    }
+
+    .modal-video {
+        height: 100%;
+    }
+}
+
+
 .about {
     display: flex;
-    padding: 30px;
+    padding: 3vw; /* Utiliza vw para el padding */
     background-color: #111;
 }
 
@@ -212,21 +485,22 @@ nav {
 }
 
 .about-title {
-	margin-left: 150px;
-	font-size: 2em;
+    margin-left: 5vw; /* Utiliza vw para el margen */
+    font-size: 2vw; /* Utiliza vw para el tamaño de fuente */
 }
+
 .about-description {
-	margin-right: 150px;
-	max-width: 600px;
-	font-size: 14px;
+    margin-right: 5vw; /* Utiliza vw para el margen */
+    max-width: 70vw; /* Utiliza vw para el ancho máximo */
+    font-size: 1vw; /* Utiliza vw para el tamaño de fuente */
 }
 
 .passengers-button {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 1vw 2vw; /* Utiliza vw para el padding */
     background-color: transparent;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 0.1vw solid #ccc; /* Utiliza vw para el grosor del borde */
+    border-radius: 0.5vw; /* Utiliza vw para el radio de borde */
     color: #fff;
     text-decoration: none;
     transition: background-color 0.3s;
@@ -236,51 +510,70 @@ nav {
     background-color: blue;
 }
 
-@media (max-width: 900px) {
+
+/* Media query para dispositivos móviles */
+@media (max-width: 480px) {
     .about {
-        flex-direction: column;
-        padding: 20px;
+        flex-direction: column; /* Cambia la dirección del flexbox a columna */
+        padding: 5vw; /* Ajusta el padding */
     }
 
     .about-title {
-        /* Ajusta el título h2 al centro */
-        text-align: left;
-		margin-left: 20px;
-		font-size: 1.6em;
+        margin-left: 0; /* Reinicia el margen izquierdo */
+        margin-bottom: 3vw; /* Agrega margen inferior */
+        font-size: 4vw; /* Ajusta el tamaño de fuente */
     }
 
     .about-description {
-        /* Alinea el párrafo de descripción a la izquierda */
-        text-align: left;
-		margin-right: 20px;
-		margin-left: 20px;
+        margin-right: 0; /* Reinicia el margen derecho */
+        font-size: 3vw; /* Ajusta el tamaño de fuente */
+    }
+
+    .passengers-button {
+        padding: 3vw 6vw; /* Ajusta el padding */
+        font-size: 3vw; /* Ajusta el tamaño de fuente */
     }
 }
 
-/* Pie de pagina */
 .footer2 {
     background: rgba(0, 0, 0, 0.7);
     text-align: center;
-    padding: 10px 0;
-    width: 100%;
+    padding: 1vw 0; /* Utiliza vw para el padding */
+    width: 100%; /* Utiliza vw para el ancho */
     box-sizing: border-box;
-    position: fixed; /* Agrega esta línea */
-    bottom: 0; /* Para que el footer se quede fijo en la parte inferior */
+    position: fixed;
+    bottom: 0;
 }
 
 .footer {
     background: rgba(0, 0, 0, 0.7);
     text-align: center;
-    padding: 10px 0;
-    width: 100%;
+    padding: 1vw 0; /* Utiliza vw para el padding */
+    width: 100%; /* Utiliza vw para el ancho */
     box-sizing: border-box;
 }
 
 .social-icon {
-    margin: 0 10px;
+    margin: 0 0.5vw; /* Utiliza vw para el margen */
 }
 
 .social-icon img {
-    width: 30px;
-    height: 30px;
+    width: 2vw; /* Utiliza vw para el ancho */
+    height: 2vw; /* Utiliza vw para la altura */
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 480px) {
+    .footer2, .footer {
+        padding: 5vw 0; /* Ajusta el padding */
+    }
+
+    .social-icon {
+        margin: 0 2vw; /* Ajusta el margen */
+    }
+
+    .social-icon img {
+        width: 10vw; /* Ajusta el tamaño de la imagen */
+        height: 10vw; /* Ajusta el tamaño de la imagen */
+    }
 }
