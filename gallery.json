@@ -1,10 +1,18 @@
 {
-   "selected": {
+   "selected": [
+      {
       "type": "image",
       "src": "images/laptop.gif",
       "description": "Descripción de la imagen 2",
       "link": "https://www.ejemplo.com"
-   },
+      },
+      {
+      "type": "video",
+      "src": "https://player.vimeo.com/video/955128487",
+      "description": "FirstDream",
+      "link": "https://www.ejemplo2.com"
+      }
+   ],
    "latest": {
       "type": "image",
       "src": "images/dream-hacking.gif",
@@ -14,7 +22,7 @@
    "codes": {
       "type": "video",
       "src": "https://player.vimeo.com/video/955128487",
-      "description": "FirstDream.mp4",
+      "description": "FirstDream",
       "link": "https://www.ejemplo2.com"
    },
    "collabs": {
