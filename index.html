@@ -5,50 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unrealbox</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"> <!-- Google Fonts -->
 </head>
 <body>
     <div class="container">
         <header class="header">
-            <p>This is a low-cost web. Probably slow as f_ck. 💙</p>
+            <div class="social-icons-left"> <!-- Nuevo contenedor para los iconos de redes sociales -->
+            <a href="#" target="_blank" class="social-icon-leftbox"><img src="images/unrealbox-icon.png" alt="unrealbox"></a>
+            <a href="https://x.com/@unrealb0x" target="_blank" class="social-icon-left"><img src="images/twitter-icon.png" alt="Twitter"></a>
+            <a href="https://instagram.com/@unrealb0x" target="_blank" class="social-icon-left"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            <a href="https://tiktok.com/@unrealb0x" target="_blank" class="social-icon-left"><img src="images/tiktok-icon.png" alt="TikTok"></a>
+            <a href="https://dns.xyz/unrealb0x" target="_blank" class="social-icon-left"><img src="images/dns-icon.png" alt="DNS"></a>
+            </div>
+	
             <button class="menu-toggle" onclick="toggleMenu()">☰</button><!-- Botón de menú para tamaños de pantalla pequeños -->
             <nav class="menu" id="menu">
-                <li><a href="#hero" class="active">UNREALBOX</a></li>
+                <li><a href="#hero" class="active">Home</a></li>
                 <li><a href="passengers.html">Passengers</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#">CTRL+ALT+SUPR</a></li>
             </nav>
         </header>
 
         <section class="hero" id="hero">
             <div class="hero-title">
-                <h1>Outside The Box<br>Inside Your Screen</h1>
+            <h1>Outside The Box<br>Inside Your Screen</h1>
+            <a href="passengers.html" class="btn"><span>Passengers Zone</span></a>
             </div>
-            <a href="passengers.html" class="btn">
-                <span>Passengers Zone</span>
-            </a>
         </section>
 
-        <section id="gallery" class="gallery">
-            <div class="gallery-item"><img src="images/duck.gif" alt="Richard"></div>
-            <div class="gallery-item"><img src="images/laptop.gif" alt="Dreamhub"></div>
-            <div class="gallery-item"><img src="images/duck.gif" alt="Abstract Art 4"></div>
-            <div class="gallery-item"><img src="images/laptop.gif" alt="Abstract Art 5"></div>
-            <div class="gallery-item"><img src="images/dream-hacking.gif" alt="Abstract Art 6"></div>
-            <div class="gallery-item"><img src="images/duck.gif" alt="Abstract Art 4"></div>
-            <div class="gallery-item"><img src="images/laptop.gif" alt="Abstract Art 5"></div>
-            <div class="gallery-item"><img src="images/dream-hacking.gif" alt="Abstract Art 6"></div>
-            <div class="gallery-item"><img src="images/dream-hacking.gif" alt="Abstract Art 6"></div>
+        <!-- Marketplaces section -->
+        <section id="marketplaces" class="marketplaces">
+            <div class="marketplaces-item"><img src="images/marketplaces-objkt.png" alt="objkt"></div>
+            <div class="marketplaces-item"><img src="images/marketplaces-zora.png" alt="zora"></div>
+            <div class="marketplaces-item"><img src="images/marketplaces-dns.png" alt="dns"></div>
         </section>
+		
+		
+		<!-- Gallery Menu -->
+    <section class="gallerymenu">
+        <div class="gallerymenu-item active" onclick="showGallery('selected')">SELECTED</div>
+        <div class="gallerymenu-item" onclick="showGallery('latest')">LATEST</div>
+        <div class="gallerymenu-item" onclick="showGallery('codes')">CODES</div>
+        <div class="gallerymenu-item" onclick="showGallery('collabs')">COLLABS</div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery"></section>
+
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-container">
+            <div id="modalImageContainer" class="modal-image-container">
+                <img id="modalImg" class="modal-image" src="" alt="">
+            </div>
+            <div id="modalVideoContainer" class="modal-video-container">
+                <iframe id="modalVideo" class="modal-video" src="" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="modal-details">
+            <div id="modalDescription" class="modal-description"></div>
+            <a id="modalButton" class="modal-button" href="#" target="_blank">Ir al enlace</a>
+        </div>
+    </div>
+</div>
+
+
+
 
         <section id="about" class="about">
             <div class="about-title">
                 <h2>About me<br>& the project</h2>
             </div>
             <div class="about-description">
-                <p>Hi! I'm Martin Villarreal, an artist and visual designer from Argentina. This is my personal project where I explore and share crazy, weird, and out-of-the-box ideas, concepts, and content.</p>
-                <p>I use Unrealbox as a space for play and experiment; my work draws inspiration from an eclectic mix of sources including nature, technology, architecture, and pop culture.</p>
-                <p>The evolution and growth of this project have been largely fueled by the support of the Passengers who collect my pieces. I hope that my content resonates with you and fills your bored screen with what I enjoy creating. Thank you!</p>
+                <p>Hi! I'm Martin Villarreal, an artist and visual designer from Argentina. At Unrealbox, I explore and share crazy, weird, and out-of-the-box ideas. My work draws inspiration from an eclectic mix of nature, technology, architecture, and pop culture.</p>
+                <p>This project grows and evolves every day thanks to the support of the Passengers who collect my pieces, connect, share, and give feedback. That's why I always try to give back with more content. So, thank you!</p>
 				<hr>
 				<p><a href="passengers.html" class="passengers-button">Passengers zone</a></p>
             </div>
@@ -66,4 +99,3 @@
     <script src="script.js"></script> <!-- Importa tu archivo script.js -->
 </body>
 </html>
-
