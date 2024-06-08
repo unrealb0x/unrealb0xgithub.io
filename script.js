@@ -1,3 +1,34 @@
+{
+    "selected": [
+        {
+            "type": "image",
+            "src": "path/to/image1.jpg",
+            "description": "Image 1 description",
+            "link": "http://example.com"
+        },
+        {
+            "type": "video",
+            "src": "path/to/video1.mp4",
+            "thumbnail": "path/to/thumbnail1.jpg",
+            "description": "Video 1 description",
+            "link": "http://example.com"
+        }
+    ],
+    "anotherCategory": [
+        {
+            "type": "image",
+            "src": "path/to/image2.jpg",
+            "description": "Image 2 description",
+            "link": "http://example.com"
+        }
+    ]
+}
+
+A continuación, ajusta tu código JavaScript para manejar correctamente los datos y verificar que las categorías sean arrays antes de usar forEach:
+script.js
+
+javascript
+
 document.addEventListener('DOMContentLoaded', function() {
     var links = document.querySelectorAll('a[href^="#"]');
     links.forEach(function(link) {
@@ -5,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
 
             var targetId = this.getAttribute('href').substring(1);
-
             var targetElement = document.getElementById(targetId);
 
             if (targetElement) {
@@ -22,7 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             loadGallery(data);
             showGallery('selected'); // Mostrar la galería inicial
-        });
+        })
+        .catch(error => console.error('Error cargando gallery.json:', error));
 });
 
 function toggleMenu() {
@@ -50,27 +81,31 @@ function loadGallery(data) {
     gallery.innerHTML = '';
 
     Object.keys(data).forEach(category => {
-        data[category].forEach(item => {
-            const galleryItem = document.createElement('div');
-            galleryItem.classList.add('gallery-item', category);
-            galleryItem.setAttribute('onclick', `openModal('${item.type}', '${item.src}', '${item.description}', '${item.link}')`);
+        const items = data[category];
+        if (Array.isArray(items)) {
+            items.forEach(item => {
+                const galleryItem = document.createElement('div');
+                galleryItem.classList.add('gallery-item', category);
+                galleryItem.setAttribute('onclick', `openModal('${item.type}', '${item.src}', '${item.description}', '${item.link}')`);
 
-            if (item.type === 'image') {
-                const img = document.createElement('img');
-                img.src = item.src;
-                galleryItem.appendChild(img);
-            } else if (item.type === 'video') {
-                const img = document.createElement('img');
-                img.src = item.thumbnail || 'default-thumbnail.jpg';
-                galleryItem.appendChild(img);
-            }
+                if (item.type === 'image') {
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    galleryItem.appendChild(img);
+                } else if (item.type === 'video') {
+                    const img = document.createElement('img');
+                    img.src = item.thumbnail || 'default-thumbnail.jpg';
+                    galleryItem.appendChild(img);
+                }
 
-            gallery.appendChild(galleryItem);
-        });
+                gallery.appendChild(galleryItem);
+            });
+        } else {
+            console.warn(`La categoría ${category} no contiene un array de elementos.`);
+        }
     });
 }
 
-// Ventana galeria
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('myModal');
     const modalImg = document.getElementById('modalImg');
