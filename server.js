@@ -1,8 +1,9 @@
 const express = require('express');
 const { GraphQLClient, gql } = require('graphql-request');
+const path = require('path');
 
 const app = express();
-const port = process.env.PORT || 3000; // Utiliza el puerto proporcionado por Netlify o 3000 por defecto
+const port = process.env.PORT || 3000; // Usar PORT definido por el entorno o 3000 por defecto
 
 // Endpoint GraphQL de TezTok
 const endpoint = 'https://api.teztok.com/v1/graphql';
@@ -48,6 +49,7 @@ app.get('/api/supporters', async (req, res) => {
 
     if (data && data.events_aggregate && data.events_aggregate.nodes) {
       const supporters = removeDuplicates(data.events_aggregate.nodes);
+      // Aquí podrías manipular los datos como desees antes de enviarlos a collections.html
       res.json({ supporters });
     } else {
       res.status(404).json({ message: 'No se encontraron datos de supporters.' });
@@ -59,10 +61,14 @@ app.get('/api/supporters', async (req, res) => {
 });
 
 // Servir archivos estáticos desde la carpeta 'public'
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Escuchar en el puerto configurado
+// Manejar todas las rutas no encontradas (404)
+app.use((req, res) => {
+  res.status(404).send('Página no encontrada');
+});
+
+// Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor API corriendo en http://localhost:${port}`);
 });
-
