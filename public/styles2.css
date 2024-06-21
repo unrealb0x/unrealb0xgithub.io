@@ -1,0 +1,855 @@
+/*  _   _ _   _ ____  _____    _    _     ____   _____  __  ______   __ */
+/* | | | | \ | |  _ \| ____|  / \  | |   | __ ) / _ \ \/ / | __ ) \ / / */
+/* | | | |  \| | |_) |  _|   / _ \ | |   |  _ \| | | \  /  |  _ \\ V /  */
+/* | |_| | |\  |  _ <| |___ / ___ \| |___| |_) | |_| /  \  | |_) || |   */
+/*  \___/|_| \_|_| \_\_____/_/___\_\_____|____/ \___/_/\_\ |____/ |_|   */
+/* |  \/  |  / \  |  _ \_   _|_ _| \ | |                                */
+/* | |\/| | / _ \ | |_) || |  | ||  \| |                                */
+/* | |  | |/ ___ \|  _ < | |  | || |\  |                                */
+/* |_|  |_/_/__ \_\_| \_\|_| |___|_|_\_|  ____  _____    _    _         */
+/* \ \   / /_ _| |   | |      / \  |  _ \|  _ \| ____|  / \  | |        */
+/*  \ \ / / | || |   | |     / _ \ | |_) | |_) |  _|   / _ \ | |        */
+/*   \ V /  | || |___| |___ / ___ \|  _ <|  _ <| |___ / ___ \| |___     */
+/*    \_/  |___|_____|_____/_/   \_\_| \_\_| \_\_____/_/   \_\_____|    */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*  _   _ _____    _    ____  _____ ____   */
+/* | | | | ____|  / \  |  _ \| ____|  _ \  */
+/* | |_| |  _|   / _ \ | | | |  _| | |_) | */
+/* |  _  | |___ / ___ \| |_| | |___|  _ <  */
+/* |_| |_|_____/_/   \_\____/|_____|_| \_\ */
+
+
+.header {
+	background-image: url('files/headers/artworks.png'); /* Ruta de la imagen */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el header */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    display: flex;
+    justify-content: space-between;
+    height: 12vw;
+    position: relative;
+}
+
+.left-section {
+    align-items: center;
+    display: flex;
+	height: 5vw;
+    margin-left: 2vw;
+	top: 1vw;
+}
+
+.logo img {
+    height: 3vw;
+}
+
+.social-icons {
+    align-items: center;
+    display: flex;
+	width: auto;
+}
+
+.social-icons a img {
+    height: 2vw;
+    margin: 0 1vw;
+    transition: transform 0.3s; /* Agrega una transición suave */
+}
+
+.social-icons a:hover img {
+    transform: scale(1.2); /* Agranda el ícono/enlace al pasar el cursor */
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 2vw;
+  right: 2.5vw;
+  width: 2vw;
+  height: 2vw;
+  z-index: 1100;
+  animation: slideIn 1s ease-out; /* Aplica la animación */
+}
+
+.menu-toggle span {
+    display: block;
+    width: 2vw;
+    height: 2vw;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover span:nth-child(1) {
+    transform: translateY(2vw) rotate(0deg);
+}
+
+.menu-toggle:hover span:nth-child(2) {
+    opacity: 1;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(90deg) translate(1vw, -1vw);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    transform: translateX(10vw) rotate(0deg);
+}
+
+/* Define la animación */
+@keyframes slideIn {
+  from {
+    right: -5vw; /* Empieza desde fuera del margen derecho */
+  }
+  to {
+    right: 5vw; /* Termina en la posición actual */
+  }
+}
+
+.full-screen-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+}
+
+.full-screen-menu .menu-content {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+}
+
+.full-screen-menu .menu-content a {
+            color: #fff;
+            font-size: 2vw;
+            text-decoration: none;
+            transition: transform 0.3s;
+            font-family: "Bebas Neue", sans-serif;
+            padding: 1vw;
+}
+
+.full-screen-menu .menu-content a:hover {
+            transform: scale(1.2);
+}
+
+        .no-scroll {
+            overflow: hidden;
+}
+
+@media (max-width: 768px) {
+	.header {
+    height: 20vw;
+    }
+	
+    .menu-toggle {
+		top: 8vw;
+		margin-right: 3vw;
+		width: 4vw;
+    }
+	
+	.menu-toggle span {
+        width: 4vw;
+        height: 4vw;
+    }
+	
+	.left-section {
+    align-items: center;
+    display: flex;
+	width: 20vw;
+	height: 20vw;
+    margin-left: 2vw;
+	}
+
+	.logo img {
+    height: 15vw;
+	}
+	
+	.social-icons a img {
+    width: 7vw;
+	height: 7vw;
+    margin: 2vw 2vw;
+    transition: transform 0.3s; /* Agrega una transición suave */
+	}
+
+	
+	/* Menú de pantalla completa */
+            .full-screen-menu {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                z-index: 1000;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .full-screen-menu .menu-content {
+                gap: 2vw;
+            }
+
+            .full-screen-menu .menu-content a {
+                font-size: 6vw; /* Ajustar el tamaño de fuente para dispositivos móviles */
+            }
+}
+
+/*
+:::        ::::::::::: ::::    ::: :::    :::  ::::::::  
+:+:            :+:     :+:+:   :+: :+:   :+:  :+:    :+: 
++:+            +:+     :+:+:+  +:+ +:+  +:+   +:+        
++#+            +#+     +#+ +:+ +#+ +#++:++    +#++:++#++ 
++#+            +#+     +#+  +#+#+# +#+  +#+          +#+ 
+#+#            #+#     #+#   #+#+# #+#   #+#  #+#    #+# 
+########## ########### ###    #### ###    ###  ######## 
+*/
+
+body#links-page {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: black;
+    color: white;
+    background-image: none;
+    transform: translateX(-100%);
+    animation: slideIn 0.5s forwards;
+    background-size: cover;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Header */
+.header-links {
+    background-image: url('files/headers/links.png'); /* Ruta de la imagen */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir todo el header */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    display: flex;
+    justify-content: space-between;
+    height: 12vw;
+    position: relative;
+}
+
+.logo-links {
+    align-items: center;
+    display: flex;
+	height: 7vw; /* Ajusta la altura del logo */
+    margin-left: 2vw;
+}
+
+.logo-links img {
+    height: 5vw;
+}
+
+.close-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    margin-top: 1%;
+    right: 5%;
+    width: 3vw;
+    height: 3vw;
+}
+
+.close-links span {
+    position: absolute;
+    width: 100%;
+    height: 1vw;
+    background-color: white;
+    left: 0;
+    transform: translateY(-50%);
+    transition: transform 0.3s;
+}
+
+.close-links span:first-child {
+    transform: rotate(45deg);
+}
+
+.close-links span:last-child {
+    transform: rotate(-45deg);
+}
+
+.close-links:hover span {
+    transform: rotate(45deg);
+}
+
+/* Main content */
+main#links-page {
+    display: flex;
+    margin: 0;
+}
+
+.left-menu, .right-menu {
+    width: 35%;
+    padding: 1vw;
+    align-items: stretch;
+    margin-left: 4%;
+}
+
+.left-menu {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.left-menu h2, .right-menu h2 {
+    font-size: 1vw;
+    margin-bottom: 0.01vw;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.left-menu li, .right-menu li {
+    margin-top: 0.3vw;
+    font-size: 4vw;
+    font-family: 'Anton', sans-serif;
+    transition: transform 0.3s;
+}
+
+.left-menu li:hover, .right-menu li:hover {
+    transform: scale(1.05);
+    display: inline-block;
+}
+
+/* Social media icons */
+.social-media h2 {
+    font-size: 1vw;
+    margin-bottom: 0.01vw;
+}
+
+.icons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.icons a {
+    margin-right: 5%;
+}
+
+.icons img {
+	margin-top: 1vw;
+    max-height: 2.5vw;
+    transition: transform 0.3s;
+}
+
+.icons img:hover {
+    transform: scale(1.2);
+}
+
+/* General links */
+a {
+    color: white;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+
+    main#links-page {
+        flex-direction: column;
+        align-items: center; /* Centra los elementos horizontalmente */
+        margin: auto;
+        overflow: auto; /* Permite el desplazamiento vertical */
+		max-height: 70%;
+    }
+	
+	.header-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    }
+	
+	.logo-links img {
+        height: 25vw; /* Adjust as needed */
+    }
+	
+		.close-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    margin-top: 1%;
+    right: 5%;
+    width: 6vw;
+    height: 6vw;
+    }
+
+    .close-links span {
+    position: absolute;
+    width: 100%;
+    height: 2.5vw;
+    }
+
+    .right-menu {
+        order: 1;
+        width: 90%; /* Ajusta el ancho para mejor visualización */
+        margin-left: 0;
+        text-align: center; /* Centra el texto */
+    }
+
+    .left-menu {
+        order: 2;
+        width: 90%; /* Ajusta el ancho para mejor visualización */
+        margin-left: 0;
+        text-align: center; /* Centra el texto */
+		padding: 2vw;
+    }
+
+    .right-menu li, .left-menu li {
+        font-size: 9vw; /* Ajusta el tamaño de fuente para móviles */
+    }
+	
+	.right-menu h2, .left-menu h2 {
+        font-size: 2vw; /* Ajusta el tamaño de fuente para móviles */
+    }
+	
+    .logo-links img, .icons img {
+        max-height: 10vw; /* Ajusta el tamaño de las imágenes para móviles */
+    }
+
+    .icons {
+        justify-content: center; /* Centra los iconos */
+        width: 100%;
+        margin-top: 5vw; /* Añade margen superior para separar los iconos del contenido */
+    }
+
+    .icons a {
+        margin: 0 5%; /* Añade márgenes para espaciar los iconos */
+    }
+
+
+}
+
+/*
+
+
+
+
+
+
+ ______     ______     ______  
+/\  __ \   /\  == \   /\__  _\ 
+\ \  __ \  \ \  __<   \/_/\ \/ 
+ \ \_\ \_\  \ \_\ \_\    \ \_\ 
+  \/_/\/_/   \/_/ /_/     \/_/ 
+                               
+							   
+							   
+							   
+							   
+							   
+							   
+*/
+
+body#art-page {
+    margin: 0;
+    position: relative;
+    background-color: #111;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+body#art-page main {
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+body#art-page .separator {
+    border: none; /* Elimina el borde predeterminado */
+    height: 2px;  /* Altura de la línea */
+    background-color: #333; /* Color de la línea */
+    width: auto; /* Ancho de la línea */
+}
+
+body#art-page .tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    background-color: #333; /* Fondo del menú de pestañas */
+}
+
+body#art-page .tab-button {
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    margin: 0 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1vw;
+}
+
+body#art-page .tab-button:hover, body#art-page .tab-button.active {
+    background-color: #111;
+}
+
+body#art-page .tab-content {
+    display: none;
+}
+
+body#art-page .tab-content.active {
+    display: block;
+}
+
+body#art-page .art-marketplaces, body#art-page .art-collections, body#art-page .art-artworks {
+    padding: 0.5vw;
+}
+
+body#art-page .art-marketplaces h2, body#art-page .art-collections h2, body#art-page .art-artworks h2 {
+    font-size: 1vw;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    margin-top: 2vw;
+}
+
+body#art-page .marketplaces-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 12vw); /* Ajusta el tamaño de las columnas */
+    gap: 3vw; /* Ajusta este valor para controlar la separación entre contenedores */
+    background-color: #111;
+    margin-top: 0.5vw;
+}
+
+body#art-page .marketplaces-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Asegura que todo dentro del item esté centrado */
+    text-align: center; /* Centra el texto dentro del item */
+    width: 10vw;
+	aspect-ratio: 1 / 1; /* Establece la relación de aspecto 4:1 */
+}
+
+body#art-page .marketplaces-img {
+    width: 12vw;
+    height: 7vw;
+    object-fit: cover;
+}
+
+body#art-page .collection-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Ajusta según el número de columnas deseadas */
+    gap: 0.5vw;
+    background-color: transparent;
+    margin-top: 0.5vw;
+}
+
+body#art-page .collection-item {
+    position: relative;
+    background-color: blue;
+    width: 100%; /* Ajusta el ancho según tus necesidades */
+    aspect-ratio: 4 / 1; /* Establece la relación de aspecto 4:1 */
+    overflow: hidden;
+}
+
+body#art-page .collection-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Opcional: ajusta el ancho de la imagen si es necesario */
+    height: 100%; /* Opcional: ajusta la altura de la imagen si es necesario */
+    object-fit: cover; /* Ajusta la forma en que la imagen se ajusta dentro del contenedor */
+}
+
+body#art-page .collection-title {
+    background-color: transparent;
+    color: white;
+    margin-top: 0.5vw; /* Ajusta el margen superior para dar espacio entre la imagen y el título */
+    width: 100%; /* Asegura que el título ocupe todo el ancho del contenedor */
+    text-align: center; /* Centra el texto dentro del contenedor del título */
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 0.8vw;
+}
+
+body#art-page .artwork-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5vw;
+    background-color: transparent;
+    margin-top: 0.5vw;
+}
+
+body#art-page .artwork-item {
+    position: relative;
+    background-color: blue;
+    width: 100%;
+    padding-bottom: 100%; /* Hace que el elemento sea cuadrado */
+    overflow: hidden;
+}
+
+body#art-page .artwork-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Media queries para estilos responsive */
+@media (max-width: 768px) {
+    body#art-page {
+        background-color: #111;
+    }
+
+    body#art-page main {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    body#art-page .art-marketplaces,
+    body#art-page .art-collections,
+    body#art-page .art-artworks {
+        padding: 1vw;
+    }
+
+    body#art-page .art-marketplaces h2,
+    body#art-page .art-collections h2,
+    body#art-page .art-artworks h2 {
+        font-size: 3vw;
+    }
+
+    body#art-page .marketplaces-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 12vw); /* Ajusta el tamaño de las columnas */
+        gap: 15vw; /* Ajusta este valor para controlar la separación entre contenedores */
+    }
+
+    body#art-page .marketplaces-item {
+        flex-direction: row;
+    }
+
+    body#art-page .marketplaces-img {
+        width: 25vw;
+        height: 10vw;
+    }
+
+    body#art-page .collection-grid {
+        grid-template-columns: repeat(1, 1fr);
+        background-color: transparent;
+        column-gap: 5vw;
+    }
+
+    body#art-page .collection-title {
+        display:none;
+    }
+
+    body#art-page .collection-img {
+        position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Opcional: ajusta el ancho de la imagen si es necesario */
+    height: 100%; /* Opcional: ajusta la altura de la imagen si es necesario */
+    object-fit: cover; /* Ajusta la forma en que la imagen se ajusta dentro del contenedor */
+    }
+
+    body#art-page .artwork-grid {
+        grid-template-columns: repeat(1, 2fr);
+    }
+
+    #scroll-top {
+        width: 8vw; /* Ancho relativo para pantallas más pequeñas */
+        height: 8vw; /* Alto relativo para pantallas más pequeñas */
+        font-size: 4vw; /* Tamaño de la flecha relativo para pantallas más pequeñas */
+    }
+
+    #scroll-top.show {
+        bottom: 6vw; /* Posición visible para pantallas más pequeñas */
+    }
+}
+
+/* BOTON SCROLL */
+
+#scroll-top {
+    position: fixed;
+    bottom: -5vw; /* Inicialmente oculto fuera de la pantalla */
+    right: 2vw;
+    background-color: rgba(0, 0, 0, 0.75); /* Negro con 75% de opacidad */
+    color: white;
+    width: 4vw; /* Ancho relativo al tamaño de la ventana */
+    height: 4vw; /* Alto relativo al tamaño de la ventana */
+    border-radius: 50%;
+    border: none;
+    font-size: 2vw; /* Tamaño de la flecha relativo al tamaño de la ventana */
+    cursor: pointer;
+    transition: background-color 0.3s ease, bottom 0.3s ease; /* Transición suave para el fondo y la posición */
+    z-index: 999; /* Asegura que esté sobre otros contenidos */
+    visibility: hidden; /* Inicialmente oculto */
+    opacity: 0; /* Inicialmente transparente */
+}
+
+#scroll-top:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Cambia a 90% de opacidad al pasar el mouse */
+}
+
+#scroll-top.show {
+    bottom: 3vw; /* Posición visible */
+	right: 2vw;
+    visibility: visible; /* Hace visible el botón */
+    opacity: 1; /* Opacidad completa */
+}
+
+
+/* Pagina de detalles artworks */
+body#detail-page {
+	margin: 0;
+    position: relative;
+	background-color: #111;
+    /*background: url('files/background.jpg') no-repeat center center fixed; */
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body#detail-page .container {
+    display: flex;
+    padding: 20px;
+}
+
+body#detail-page .image-section {
+    flex: 1;
+}
+
+body#detail-page .details-section {
+    flex: 1;
+    padding: 20px;
+}
+
+body#detail-page .details-section h1{
+    font-size: 24vw;
+}
+
+#detail-image {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+/* COLLECTION */
+
+body#collection {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body#collection main {
+    margin-left: 12%;
+    margin-right: 12%;
+}
+
+body#collection .container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+body#collection .details-section {
+    flex: 2;
+}
+
+body#collection .supporters-section {
+    flex: 1;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-left: 20px;
+}
+
+body#collection .supporters-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+body#collection .supporters-section li {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+body#collection .supporters-section img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+body#collection .image-section {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+body#collection .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+}
+
+body#collection .collections-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+body#collection footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+body#collection #scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+body#collection #scroll-top:hover {
+    background-color: #0056b3;
+}
