@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de la Colección</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body id="collection">
+    <header class="header">
+        <div class="left-section">
+            <a href="index.html">
+                <div class="logo">
+                    <img src="files/icon-unrealbox.png" alt="Unrealbox">
+                </div>
+            </a>
+        
+        <nav class="social-icons">
+            <a href="https://youtube.com/@unrealb0x" target="_blank"><img src="files/icon-youtube.png" alt="YouTube"></a>
+            <a href="https://instagram.com/unrealb0x" target="_blank"><img src="files/icon-ig.png" alt="Instagram"></a>
+            <a href="https://tiktok.com/@unrealb0x" target="_blank"><img src="files/icon-tiktok.png" alt="TikTok"></a>
+            <a href="https://x.com/unrealb0x" target="_blank"><img src="files/icon-twitter.png" alt="Twitter"></a>
+        </nav>
+        </div>
+        
+        <div class="menu-toggle" id="menu-toggle" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+    </div>
+</header>
+
+<!-- Menú de pantalla completa -->
+<div id="full-screen-menu" class="full-screen-menu">
+    <div>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="menu-content">
+        <a href="index.html">HOME</a>
+        <a href="art.html">ARTWORKS</a>
+        <a href="links.html">LINKS</a>
+        <a href="#about">ABOUT</a>
+    </div>
+</div>
+
+
+    <main>
+        <div class="container">
+            <div class="details-section">
+                <h1 id="image-title"></h1>
+                <p id="collection-description"></p>
+            </div>
+            <div class="supporters-section">
+                <h2>Supporters</h2>
+                <div id="supporters-list"></div>
+                    <!-- Collectors will be populated here by JavaScript -->
+                </ul>
+            </div>
+        </div>
+        <div class="image-section">
+            <img id="detail-image" src="" alt="Detalle de la Colección" width="100%">
+        </div>
+        <div class="collections-grid" id="collections-grid">
+            <!-- Grid images will be populated here by JavaScript -->
+        </div>
+    </main>
+    <footer>
+        <button id="scroll-top" onclick="scrollToTop()">↑</button>
+    </footer>
+	<script src="script.js"></script>
+    <script>
+	
+<!-- SUPPORTERS LIST -->
+    async function fetchSupporters() {
+      try {
+        const response = await fetch('/api/supporters');
+        const data = await response.json();
+
+        const supportersList = document.getElementById('supporters-list');
+        supportersList.innerHTML = '';
+
+        data.supporters.forEach(supporter => {
+          const { alias, account, twitter, website, logo, rank } = supporter.buyer_profile;
+
+          const supporterDiv = document.createElement('div');
+          supporterDiv.classList.add('supporter', rank ? rank.toLowerCase() : 'regular');
+
+          let supporterHTML = `
+            <h3>${alias || 'Anonymous'}</h3>
+            <p><strong>Cuenta:</strong> ${account}</p>
+            <p><strong>Twitter:</strong> ${twitter || 'N/A'}</p>
+            <p><strong>Sitio Web:</strong> ${website ? `<a href="${website}" target="_blank">${website}</a>` : 'N/A'}</p>
+          `;
+
+          if (logo) {
+            supporterHTML += `<img src="${logo}" alt="${alias} Logo" class="logo">`;
+          }
+
+          supporterDiv.innerHTML = supporterHTML;
+          supportersList.appendChild(supporterDiv);
+        });
+
+      } catch (error) {
+        console.error('Error al obtener datos de supporters:', error);
+        const supportersList = document.getElementById('supporters-list');
+        supportersList.innerHTML = '<p>Error al cargar datos de supporters.</p>';
+      }
+    }
+
+    fetchSupporters();
+
+<!-- GALERIA SHOWCASING -->	
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const collectionId = params.get('collection');
+			
+			<!-- data-id de artworks.html -->
+            const collections = {
+                'collection1': {
+                    'src': 'files/collections/collection-blocks.png',
+                    'title': 'Título de la Colección 1',
+                    'description': 'Descripción de la Colección 1',
+                    'gridImages': [
+                        'files/laptop.gif',
+                        'files/laptop.gif',
+						'files/laptop.gif',
+						'files/laptop.gif',
+						'files/laptop.gif',
+						'files/laptop.gif'
+                        // Add more images as needed
+                    ]
+                },
+                'collection2': {
+                    'src': 'files/collections/collection-animalbiomechanics.png',
+                    'title': 'Título de la Colección 2',
+                    'description': 'Descripción de la Colección 2',
+                    'gridImages': [
+                        'files/laptop.gif',
+                        'files/laptop.gif',
+                        'files/laptop.gif'
+                        // Add more images as needed
+                    ]
+                }
+                // Add more collections as needed
+            };
+
+            if (collections[collectionId]) {
+                document.getElementById('detail-image').src = collections[collectionId].src;
+                document.getElementById('image-title').textContent = collections[collectionId].title;
+                document.getElementById('collection-description').textContent = collections[collectionId].description;
+
+                // Populate collection grid
+                const collectionGrid = document.getElementById('collections-grid');
+                collections[collectionId].gridImages.forEach(imageSrc => {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imageSrc;
+                    collectionGrid.appendChild(imgElement);
+                });
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Supporters de Tezos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .supporter {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .logo {
+      max-width: 100px;
+      max-height: 100px;
+      margin-right: 10px;
+    }
+    .bronze {
+      background-color: #cd7f32; /* Color bronce */
+    }
+    .silver {
+      background-color: #c0c0c0; /* Color plata */
+    }
+    .gold {
+      background-color: #ffd700; /* Color oro */
+    }
+    .regular {
+      background-color: #ffffff; /* Color regular */
+    }
+  </style>
+</head>
+<body>
+  <h1>Mis Supporters de Tezos</h1>
+  <div id="supporters-list"></div>
+
+  <script>
+    async function fetchSupporters() {
+      try {
+        const response = await fetch('/api/supporters');
+        const data = await response.json();
+
+        const supportersList = document.getElementById('supporters-list');
+        supportersList.innerHTML = '';
+
+        data.supporters.forEach(supporter => {
+          const { alias, account, twitter, website, logo, rank } = supporter.buyer_profile;
+
+          const supporterDiv = document.createElement('div');
+          supporterDiv.classList.add('supporter', rank ? rank.toLowerCase() : 'regular');
+
+          let supporterHTML = `
+            <h3>${alias || 'Anonymous'}</h3>
+            <p><strong>Cuenta:</strong> ${account}</p>
+            <p><strong>Twitter:</strong> ${twitter || 'N/A'}</p>
+            <p><strong>Sitio Web:</strong> ${website ? `<a href="${website}" target="_blank">${website}</a>` : 'N/A'}</p>
+          `;
+
+          if (logo) {
+            supporterHTML += `<img src="${logo}" alt="${alias} Logo" class="logo">`;
+          }
+
+          supporterDiv.innerHTML = supporterHTML;
+          supportersList.appendChild(supporterDiv);
+        });
+
+      } catch (error) {
+        console.error('Error al obtener datos de supporters:', error);
+        const supportersList = document.getElementById('supporters-list');
+        supportersList.innerHTML = '<p>Error al cargar datos de supporters.</p>';
+      }
+    }
+
+    fetchSupporters();
+  </script>
+</body>
+</html>
