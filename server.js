@@ -2,7 +2,7 @@ const express = require('express');
 const { GraphQLClient, gql } = require('graphql-request');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Utiliza el puerto proporcionado por Netlify o 3000 por defecto
 
 // Endpoint GraphQL de TezTok
 const endpoint = 'https://api.teztok.com/v1/graphql';
@@ -59,9 +59,10 @@ app.get('/api/supporters', async (req, res) => {
 });
 
 // Servir archivos estáticos desde la carpeta 'public'
-app.use(express.static('public/collections.html'));
+app.use(express.static('public'));
 
-// Iniciar el servidor
+// Escuchar en el puerto configurado
 app.listen(port, () => {
   console.log(`Servidor API corriendo en http://localhost:${port}`);
 });
+
