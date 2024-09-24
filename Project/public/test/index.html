@@ -197,11 +197,10 @@
             // Limpiar el canvas de la cuadrícula
             ctx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
 
-            ctx.globalAlpha = 0.9; // Opacidad de la cuadrícula
-            ctx.strokeStyle = 'black'; // Color de la cuadrícula
+            ctx.globalAlpha = 0.9; 
+            ctx.strokeStyle = 'black';
             ctx.lineWidth = 0.9;
 
-            // Dibujar líneas verticales
             for (var x = 0; x < gridCanvas.width; x += 4) {
                 ctx.beginPath();
                 ctx.moveTo(x, 0);
@@ -209,7 +208,6 @@
                 ctx.stroke();
             }
 
-            // Dibujar líneas horizontales
             for (var y = 0; y < gridCanvas.height; y += 4) {
                 ctx.beginPath();
                 ctx.moveTo(0, y);
