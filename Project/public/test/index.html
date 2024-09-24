@@ -9,26 +9,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Ocupa toda la altura de la ventana */
-            margin: 0; /* Elimina el margen por defecto del body */
-            background-color: black; /* Fondo negro para resaltar el canvas */
-            position: relative; /* Permitir el uso de z-index */
+            height: 100vh; 
+            margin: 0; 
+            background-color: black;
+            position: relative;
         }
         #webgl, #grid {
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 1; /* Asegura que los canvas estén debajo de la imagen */
+            z-index: 1;
             border: 1px solid black;
         }
         #image {
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 2; /* Coloca la imagen encima de los canvas */
-            width: 1000px; /* Asegúrate de ajustar el tamaño de la imagen según sea necesario */
+            z-index: 2;
+            width: 1000px;
             height: 1000px;
-            pointer-events: none; /* Esto permite que los eventos de ratón pasen a través de la imagen */
+            pointer-events: none;
         }
     </style>
 </head>
@@ -41,20 +41,19 @@
     <script>
         var gl, t = 0, speed = 0.01, prog;
         var color1 = [0, 0, 0]; // Color negro
-        var color2 = [Math.random(), Math.random(), Math.random()]; // Color iridiscente aleatorio
+        var color2 = [Math.random(), Math.random(), Math.random()];
 
         // Asegurarse de que el color2 sea brillante
         function getFluorescentColor() {
             return [
-                Math.random() * 0.5 + 0.5, // Componente rojo
-                Math.random() * 0.5 + 0.5, // Componente verde
-                Math.random() * 0.5 + 0.5  // Componente azul
+                Math.random() * 0.5 + 0.5,
+                Math.random() * 0.5 + 0.5,
+                Math.random() * 0.5 + 0.5 
             ];
         }
 
-        color2 = getFluorescentColor(); // Obtener un color fluorescente
+        color2 = getFluorescentColor();
 
-        // Variables aleatorias para la distorsión
         var distortionX = Math.random() * 0.5;
         var distortionY = Math.random() * 0.5;
         var frequencyX = Math.random() * 20.0;
@@ -89,27 +88,22 @@
 
                 void main() {
                     vec2 uv = (gl_FragCoord.xy / 512.0) * 2.0 - 1.0; // Coordenadas normalizadas [-1,1]
-                    
-                    // Ojo de pez: distorsión de las coordenadas UV
+		    
                     float r = length(uv);
-                    float strength = 0.4; // Fuerza del efecto de ojo de pez
-                    uv *= (1.0 - r * strength);  // Aplicamos el efecto ojo de pez
+                    float strength = 0.4; 
+                    uv *= (1.0 - r * strength);  
                     
-                    // Distorsionar UV para efectos de onda usando valores aleatorios
                     uv.x += distortionX * sin(uv.y * frequencyX + t * 2.0);
                     uv.y += distortionY * cos(uv.x * frequencyY - t * 2.0);
                     
                     float radius = length(uv);
                     float angle = atan(uv.y, uv.x) + t;
 
-                    // Interpolación de colores en función del radio
-					float brightnessFactor = 1.5; // Aumenta la intensidad
+					float brightnessFactor = 1.5; 
                     vec3 color = clamp(mix(color1, color2, radius) * brightnessFactor, 0.0, 1.0);
                     
-                    // Scanlines: líneas de escaneo tipo CRT
                     float scanline = sin(uv.y * 150.0) * 0.1;
                     
-                    // Aplicar un efecto de desvanecimiento hacia los bordes
                     float fade = smoothstep(3.0, 0.5, radius);
                     
                     // Combinamos el color, el fade y las scanlines
