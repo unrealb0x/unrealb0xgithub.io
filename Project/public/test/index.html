@@ -58,7 +58,7 @@
             ];
         }
 
-        color2 = getFluorescentColor();
+        color2 = getFluorescentColor(); // Obtener un color fluorescente
 
         // Variables aleatorias para la distorsión
         var distortionX = Math.random() * 0.5;
@@ -288,26 +288,26 @@
         // Manejador de teclas
         document.addEventListener('keydown', function(event) {
             switch(event.key) {
-                case 'f':
+                case 'f': // Tecla F para grabar WebGL
                     if (!capturer) {
                         StartRecording();
                     } else {
                         StopRecording();
                     }
                     break;
-                case 'h':
+                case 'g': // Tecla G para grabar todo
                     if (!recordingAll) {
                         StartRecordingAll();
                     } else {
                         StopRecordingAll();
                     }
                     break;
-                case 'j':
+                case 'h': // Tecla H para detener la grabación de todo
                     if (recordingAll) {
                         StopRecordingAll();
                     }
                     break;
-                case 'g':
+                case 'j': // Tecla J para detener la grabación de WebGL
                     if (capturer) {
                         StopRecording();
                     }
