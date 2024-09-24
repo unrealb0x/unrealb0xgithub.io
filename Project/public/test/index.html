@@ -295,21 +295,21 @@
                         StopRecording();
                     }
                     break;
-                case 'g': // Tecla G para grabar todo
+                case 'g': // Tecla J para detener la grabación de WebGL
+                    if (capturer) {
+                        StopRecording();
+                    }
+                    break;
+                case 'h': // Tecla G para grabar todo
                     if (!recordingAll) {
                         StartRecordingAll();
                     } else {
                         StopRecordingAll();
                     }
                     break;
-                case 'h': // Tecla H para detener la grabación de todo
+                case 'j': // Tecla H para detener la grabación de todo
                     if (recordingAll) {
                         StopRecordingAll();
-                    }
-                    break;
-                case 'j': // Tecla J para detener la grabación de WebGL
-                    if (capturer) {
-                        StopRecording();
                     }
                     break;
             }
