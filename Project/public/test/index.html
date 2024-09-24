@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización con WebGL</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ocupa toda la altura de la ventana */
+            margin: 0; /* Elimina el margen por defecto del body */
+            background-color: black; /* Fondo negro para resaltar el canvas */
+            position: relative; /* Permitir el uso de z-index */
+        }
+        #webgl, #grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1; /* Asegura que los canvas estén debajo de la imagen */
+            border: 1px solid black;
+        }
+        #image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2; /* Coloca la imagen encima de los canvas */
+            width: 1000px; /* Asegúrate de ajustar el tamaño de la imagen según sea necesario */
+            height: 1000px;
+            pointer-events: none; /* Esto permite que los eventos de ratón pasen a través de la imagen */
+        }
+    </style>
+</head>
+<body onload="Init()">
+
+    <img id="image" src="public/imagen.png" alt="Imagen superpuesta">
+	<canvas id="webgl" width="1000" height="1000"></canvas>
+    <canvas id="grid" width="1000" height="1000"></canvas>
+
+    <script>
+        var gl, t = 0, speed = 0.01, prog;
+        var color1 = [0, 0, 0]; // Color negro
+        var color2 = [Math.random(), Math.random(), Math.random()]; // Color iridiscente aleatorio
+
+        // Asegurarse de que el color2 sea brillante
+        function getFluorescentColor() {
+            return [
+                Math.random() * 0.5 + 0.5, // Componente rojo
+                Math.random() * 0.5 + 0.5, // Componente verde
+                Math.random() * 0.5 + 0.5  // Componente azul
+            ];
+        }
+
+        color2 = getFluorescentColor(); // Obtener un color fluorescente
+
+        // Variables aleatorias para la distorsión
+        var distortionX = Math.random() * 0.5;
+        var distortionY = Math.random() * 0.5;
+        var frequencyX = Math.random() * 20.0;
+        var frequencyY = Math.random() * 20.0;
+
+        function LoadGL() {
+            var glCanvas = document.getElementById("webgl");
+            gl = glCanvas.getContext("experimental-webgl");
+            if (!gl) {
+                alert("Tu navegador no soporta WebGL.");
+                return;
+            }
+        }
+
+        function RegenShaders() {
+            var vertexShaderSource = `
+                attribute vec3 pos;
+                void main() {
+                    gl_Position = vec4(pos, 1.0);
+                }
+            `;
+
+            var fragmentShaderSource = `
+                precision mediump float;
+                uniform float t;
+                uniform vec3 color1;
+                uniform vec3 color2;
+                uniform float distortionX;
+                uniform float distortionY;
+                uniform float frequencyX;
+                uniform float frequencyY;
+
+                void main() {
+                    vec2 uv = (gl_FragCoord.xy / 512.0) * 2.0 - 1.0; // Coordenadas normalizadas [-1,1]
+                    
+                    // Ojo de pez: distorsión de las coordenadas UV
+                    float r = length(uv);
+                    float strength = 0.4; // Fuerza del efecto de ojo de pez
+                    uv *= (1.0 - r * strength);  // Aplicamos el efecto ojo de pez
+                    
+                    // Distorsionar UV para efectos de onda usando valores aleatorios
+                    uv.x += distortionX * sin(uv.y * frequencyX + t * 2.0);
+                    uv.y += distortionY * cos(uv.x * frequencyY - t * 2.0);
+                    
+                    float radius = length(uv);
+                    float angle = atan(uv.y, uv.x) + t;
+
+                    // Interpolación de colores en función del radio
+					float brightnessFactor = 1.5; // Aumenta la intensidad
+                    vec3 color = clamp(mix(color1, color2, radius) * brightnessFactor, 0.0, 1.0);
+                    
+                    // Scanlines: líneas de escaneo tipo CRT
+                    float scanline = sin(uv.y * 150.0) * 0.1;
+                    
+                    // Aplicar un efecto de desvanecimiento hacia los bordes
+                    float fade = smoothstep(3.0, 0.5, radius);
+                    
+                    // Combinamos el color, el fade y las scanlines
+                    gl_FragColor = vec4((color * fade) + vec3(scanline), 1.0);
+                }
+            `;
+
+            var vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+            var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+            prog = createProgram(gl, vertexShader, fragmentShader);
+
+            gl.useProgram(prog);
+
+            var positionAttributeLocation = gl.getAttribLocation(prog, "pos");
+            var positionBuffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+            var positions = [
+                -1, -1, 0,
+                1, -1, 0,
+                -1, 1, 0,
+                -1, 1, 0,
+                1, -1, 0,
+                1, 1, 0
+            ];
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+            gl.enableVertexAttribArray(positionAttributeLocation);
+            gl.vertexAttribPointer(positionAttributeLocation, 3, gl.FLOAT, false, 0, 0);
+
+            // Pasar los colores aleatorios a los shaders
+            var color1UniformLocation = gl.getUniformLocation(prog, "color1");
+            gl.uniform3fv(color1UniformLocation, color1);
+
+            var color2UniformLocation = gl.getUniformLocation(prog, "color2");
+            gl.uniform3fv(color2UniformLocation, color2);
+
+            // Pasar las distorsiones aleatorias a los shaders
+            var distortionXUniformLocation = gl.getUniformLocation(prog, "distortionX");
+            gl.uniform1f(distortionXUniformLocation, distortionX);
+
+            var distortionYUniformLocation = gl.getUniformLocation(prog, "distortionY");
+            gl.uniform1f(distortionYUniformLocation, distortionY);
+
+            var frequencyXUniformLocation = gl.getUniformLocation(prog, "frequencyX");
+            gl.uniform1f(frequencyXUniformLocation, frequencyX);
+
+            var frequencyYUniformLocation = gl.getUniformLocation(prog, "frequencyY");
+            gl.uniform1f(frequencyYUniformLocation, frequencyY);
+        }
+
+        function createShader(gl, type, source) {
+            var shader = gl.createShader(type);
+            gl.shaderSource(shader, source);
+            gl.compileShader(shader);
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error("Shader compile failed with: " + gl.getShaderInfoLog(shader));
+                gl.deleteShader(shader);
+                return null;
+            }
+            return shader;
+        }
+
+        function createProgram(gl, vertexShader, fragmentShader) {
+            var program = gl.createProgram();
+            gl.attachShader(program, vertexShader);
+            gl.attachShader(program, fragmentShader);
+            gl.linkProgram(program);
+            if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+                console.error("Program failed to link: " + gl.getProgramInfoLog(program));
+                return null;
+            }
+            return program;
+        }
+
+        function draw() {
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            t += speed;
+            var timeUniformLocation = gl.getUniformLocation(prog, "t");
+            gl.uniform1f(timeUniformLocation, t);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+            drawGrid(); // Dibuja la cuadrícula
+
+            requestAnimationFrame(draw);
+        }
+
+        function drawGrid() {
+            var gridCanvas = document.getElementById("grid");
+            var ctx = gridCanvas.getContext("2d");
+
+            // Limpiar el canvas de la cuadrícula
+            ctx.clearRect(0, 0, gridCanvas.width, gridCanvas.height);
+
+            ctx.globalAlpha = 0.9; // Opacidad de la cuadrícula
+            ctx.strokeStyle = 'black'; // Color de la cuadrícula
+            ctx.lineWidth = 0.9;
+
+            // Dibujar líneas verticales
+            for (var x = 0; x < gridCanvas.width; x += 4) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, gridCanvas.height);
+                ctx.stroke();
+            }
+
+            // Dibujar líneas horizontales
+            for (var y = 0; y < gridCanvas.height; y += 4) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(gridCanvas.width, y);
+                ctx.stroke();
+            }
+        }
+
+        function Init() {
+            LoadGL();
+            RegenShaders();
+            draw();
+        }
+    </script>
+
+</body>
+</html>
