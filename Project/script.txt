@@ -1,0 +1,17 @@
+function toggleMenu() {
+    var mobileMenu = document.getElementById('menu');
+    if (mobileMenu.style.display === 'block') {
+        mobileMenu.style.display = 'none';
+    } else {
+        mobileMenu.style.display = 'block';
+    }
+}
+
+// Opcional: Cierra el menú si se hace clic fuera de él
+window.addEventListener('click', function(event) {
+    var menu = document.getElementById('menu');
+    var menuToggle = document.querySelector('.menu-toggle');
+    if (!menu.contains(event.target) && !menuToggle.contains(event.target)) {
+        menu.style.display = 'none';
+    }
+});

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unrealbox</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body id="links-page">
+
+    <header class="header-links">
+        <div class="logo-links">
+            <a href="index.html">
+                <div class="logo">
+                    <img src="files/icon-unrealbox.png" alt="Unrealbox">
+                </div>
+            </a>
+        </div>
+		
+        <div class="close-links" onclick="goBack()">
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+	
+    <main id="links-page">
+        <section class="left-menu">
+            <h2>Navigation</h2>
+            <ul>
+                <li><a href="index.html">PORTFOLIO</a></li>
+                <li><a href="art.html">PROJECTS</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+            <div class="social-media">
+                <h2>Connect</h2>
+                <div class="icons">
+                    <a href="https://youtube.com/@unrealb0x"><img src="files/icon-youtube.png" alt="YouTube"></a>
+                    <a href="https://instagram.com/unrealb0x"><img src="files/icon-ig.png" alt="Instagram"></a>
+                    <a href="https://tiktok.com/@unrealb0x"><img src="files/icon-tiktok.png" alt="TikTok"></a>
+                    <a href="https://x.com/unrealb0x"><img src="files/icon-twitter.png" alt="X"></a>
+                </div>
+            </div>
+        </section>
+        <section class="right-menu">
+            <h2>Onchain works - NFTs</h2>
+            <ul>
+                <li><a href="https://objkt.com/users/tz1an3vLu31ouUyHifHhNZ5by1843yprNY8n">OBJKT</a></li>
+            </ul>
+        </section>
+    </main>
+	
+<script>
+    function goBack() {
+        // Obtenemos la URL de la página anterior
+        var previousUrl = document.referrer;
+
+        // Aplicar la animación de salida
+        document.body.style.animation = 'slideOut 0.5s forwards';
+        
+        // Redirigir después de la animación
+        setTimeout(function() {
+            if (previousUrl && previousUrl !== window.location.href) {
+                window.history.back(); // Retrocede si hay una página anterior diferente de la actual
+            } else {
+                window.location.href = 'index.html'; // Redirige al home si no hay página anterior
+            }
+        }, 500); // Tiempo de la animación
+    }
+	
+    // Añadir evento a los enlaces para la animación de salida
+    document.querySelectorAll('a.navigate').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            document.body.style.animation = 'slideOut 0.5s forwards';
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 500); // Tiempo de la animación
+        });
+    });
+</script>
+
+</body>
+</html>
