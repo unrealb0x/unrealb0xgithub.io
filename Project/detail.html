@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de la Imagen</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body id="detail-page">
+    <header class="header">
+        <div class="left-section">
+            <a href="index.html">
+                <div class="logo">
+                    <img src="files/icon-unrealbox.png" alt="Unrealbox">
+                </div>
+            </a>
+		
+        <nav class="social-icons">
+            <a href="https://youtube.com/@unrealb0x" target="_blank"><img src="files/icon-youtube.png" alt="YouTube"></a>
+            <a href="https://instagram.com/unrealb0x" target="_blank"><img src="files/icon-ig.png" alt="Instagram"></a>
+            <a href="https://tiktok.com/@unrealb0x" target="_blank"><img src="files/icon-tiktok.png" alt="TikTok"></a>
+            <a href="https://x.com/unrealb0x" target="_blank"><img src="files/icon-twitter.png" alt="Twitter"></a>
+        </nav>
+		</div>
+		
+        <nav class="menu">
+            <a href="art.html">ART</a>
+            <a href="links.html">LINKS</a>
+            <a href="#about">ABOUT</a>
+        </nav>
+		
+		<nav class="mobile-menu">
+            <a href="#art">ART</a>
+            <a href="links.html ">LINKS</a>
+            <a href="#about">ABOUT</a>
+        </nav>
+		
+    </header>
+    <main>
+        <div class="container">
+            <div class="image-section">
+                <img id="detail-image" src="" alt="Detalle de la Imagen" width="100%">
+            </div>
+            <div class="details-section">
+                <h1 id="image-title"></h1>
+                <p id="image-description"></p>
+                <button id="action-button">Acción</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <button id="scroll-top" onclick="scrollToTop()">↑</button>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const imageId = params.get('image');
+            const images = {
+                'artwork1': {
+                    'src': 'files/laptop.gif',
+                    'title': 'Título de la Imagen 1',
+                    'description': 'Descripción de la Imagen 1'
+                },
+                'artwork2': {
+                    'src': 'files/dream-hacking.gif',
+                    'title': 'Título de la Imagen 2',
+                    'description': 'Descripción de la Imagen 2'
+                },
+                // Añadir más imágenes según sea necesario
+            };
+
+            if (images[imageId]) {
+                document.getElementById('detail-image').src = images[imageId].src;
+                document.getElementById('image-title').textContent = images[imageId].title;
+                document.getElementById('image-description').textContent = images[imageId].description;
+            }
+        });
+    </script>
+</body>
+</html>
